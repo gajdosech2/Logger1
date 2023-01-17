@@ -14,8 +14,6 @@
 #include <cassert>
 #include <iostream>
 
-#include <opencv2/opencv.hpp>
-
 #include <boost/format.hpp>
 #include <boost/thread.hpp>
 #include <boost/lexical_cast.hpp>

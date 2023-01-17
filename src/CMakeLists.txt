@@ -51,6 +51,8 @@ add_executable(Logger
   OpenNI/openni_depth_image.cpp
   )
 
+set_property(TARGET Logger PROPERTY CXX_STANDARD 11)
+
 target_link_libraries(Logger
                       ${ZLIB_LIBRARY}
                       ${Boost_SYSTEM_LIBRARIES}

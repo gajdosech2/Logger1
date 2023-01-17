@@ -231,7 +231,7 @@ void MyOpenNIExample::imageCallback (boost::shared_ptr<Image> image, void* cooki
   ImageContext* gray_image_context = gray_images_[device->getConnectionString ()];
 
   // lock image so it does not get drawn
-  unique_lock<mutex> rgb_lock (rgb_image_context->lock);
+  unique_lock<boost::mutex> rgb_lock (rgb_image_context->lock);
   unsigned char* rgb_buffer = (unsigned char*)(rgb_image_context->image.data + (rgb_image_context->image.cols >> 2) * rgb_image_context->image.elemSize () +
                                               (rgb_image_context->image.rows >> 2) * rgb_image_context->image.step);
   image->fillRGB (rgb_image_context->image.cols >> 1, rgb_image_context->image.rows >> 1, rgb_buffer, rgb_image_context->image.step);
@@ -259,7 +259,7 @@ void MyOpenNIExample::imageCallback (boost::shared_ptr<Image> image, void* cooki
   rgb_image_context->is_new = true;
   rgb_lock.unlock ();
 
-  unique_lock<mutex> gray_lock (gray_image_context->lock);
+  unique_lock<boost::mutex> gray_lock (gray_image_context->lock);
 
   unsigned char* gray_buffer = (unsigned char*)(gray_image_context->image.data + (gray_image_context->image.cols >> 2) +
                                                (gray_image_context->image.rows >> 2) * gray_image_context->image.step);
@@ -279,7 +279,7 @@ void MyOpenNIExample::depthCallback (boost::shared_ptr<DepthImage> depth, void* 
   ImageContext* depth_image_context = depth_images_[device->getConnectionString ()];
 
   // lock depth image so it does not get drawn
-  unique_lock<mutex> depth_lock (depth_image_context->lock);
+  unique_lock<boost::mutex> depth_lock (depth_image_context->lock);
   float* buffer = (float*)(depth_image_context->image.data + (depth_image_context->image.cols >> 2) * sizeof(float) +
                           (depth_image_context->image.rows >> 2) * depth_image_context->image.step );
   depth->fillDepthImage (depth_image_context->image.cols >> 1, depth_image_context->image.rows >> 1, buffer, depth_image_context->image.step);
