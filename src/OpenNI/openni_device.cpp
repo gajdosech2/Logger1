@@ -594,7 +594,7 @@ OpenNIDevice::CallbackHandle OpenNIDevice::registerImageCallback (const ImageCal
   if (!hasImageStream ())
     THROW_OPENNI_EXCEPTION ("Device does not provide an image stream");
 
-  image_callback_[image_callback_handle_counter_] = boost::bind (callback, boost::placeholders::_1, custom_data);
+  image_callback_[image_callback_handle_counter_] = boost::bind (callback, _1, custom_data);
   return image_callback_handle_counter_++;
 }
 
@@ -611,7 +611,7 @@ OpenNIDevice::CallbackHandle OpenNIDevice::registerDepthCallback (const DepthIma
   if (!hasDepthStream ())
     THROW_OPENNI_EXCEPTION ("Device does not provide a depth image");
 
-  depth_callback_[depth_callback_handle_counter_] = boost::bind (callback, boost::placeholders::_1, custom_data);
+  depth_callback_[depth_callback_handle_counter_] = boost::bind (callback, _1, custom_data);
   return depth_callback_handle_counter_++;
 }
 
@@ -629,7 +629,7 @@ OpenNIDevice::CallbackHandle OpenNIDevice::registerIRCallback (const IRImageCall
   if (!hasDepthStream ())
     THROW_OPENNI_EXCEPTION ("Device does not provide an IR stream");
 
-  ir_callback_[ir_callback_handle_counter_] = boost::bind (callback, boost::placeholders::_1, custom_data);
+  ir_callback_[ir_callback_handle_counter_] = boost::bind (callback, _1, custom_data);
   return ir_callback_handle_counter_++;
 }
 
